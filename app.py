@@ -10,12 +10,11 @@ screen_name = st.session_state.name
 
 st.echo()
 with st.echo():
-    st.write('Code will be executed and printed')
     
-auth = tweepy.OAuthHandler(st.secrets["consumer_key"], st.secrets["consumer_secret"])
-auth.set_access_token(st.secrets["access_token_key"], st.secrets["access_token_secret"])
+    auth = tweepy.OAuthHandler(st.secrets["consumer_key"], st.secrets["consumer_secret"])
+    auth.set_access_token(st.secrets["access_token_key"], st.secrets["access_token_secret"])
 
-api = tweepy.API(auth)
+    api = tweepy.API(auth)
 
 alltweets = []  
 try:
