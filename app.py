@@ -8,13 +8,11 @@ st.text("This website creates a wordcloud out of the last 200 tweets of a user."
 st.text_input("Enter a twitter username to begin", key="name")
 screen_name = st.session_state.name
 
-st.echo()
-with st.echo():
-    
-    auth = tweepy.OAuthHandler(st.secrets["consumer_key"], st.secrets["consumer_secret"])
-    auth.set_access_token(st.secrets["access_token_key"], st.secrets["access_token_secret"])
+st.text(st.secrets["love"])
+auth = tweepy.OAuthHandler(st.secrets["consumer_key"], st.secrets["consumer_secret"])
+auth.set_access_token(st.secrets["access_token_key"], st.secrets["access_token_secret"])
 
-    api = tweepy.API(auth)
+api = tweepy.API(auth)
 
 alltweets = []  
 try:
