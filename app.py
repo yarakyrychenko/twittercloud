@@ -30,10 +30,9 @@ if screen_name != "":
                 stopwords = set(STOPWORDS)
                 stopwords.update(["rt"])
                 wordcloud = WordCloud(width=1800, height=1200,stopwords=stopwords, max_font_size=250, max_words=200, background_color="white").generate(text)  
-                fig = plt.figure(figsize=(18,12),facecolor='k')
+                fig = plt.figure(figsize=(18,12))
                 plt.imshow(wordcloud, interpolation="bilinear")
                 plt.axis("off")
-                plt.tight_layout(pad=0)
                 st.pyplot(fig)
                 st.balloons()
         except:
