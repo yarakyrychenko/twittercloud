@@ -14,10 +14,9 @@ if st.session_state.last_name != st.session_state.name:
         st.session_state.all_stopwords = make_stopwords()
     if "api" not in st.session_state:    
         st.session_state.api = authenticate()
-
     try:
-       outtweets = get_user_tweeets(st.session_state.name,st.session_state.api)
-        try: 
+        outtweets = get_user_tweeets(st.session_state.name,st.session_state.api)
+        try:
             cat = outtweets[9]   
             st.spinner()
             with st.spinner(text='We\'re building the wordcloud. Give it a sec...'):
