@@ -4,7 +4,7 @@ import tweepy, re
 from wordcloud import WordCloud
 
 st.title(" ☁ Head in the Tweets ☁️ ") 
-st.subheader("This website creates a wordcloud out of the last 200 tweets of a user.")
+st.subheader("Create a wordcloud out of your last 200 tweets!")
 st.text_input("Enter a twitter username to begin", key="name")
 screen_name = st.session_state.name
 
