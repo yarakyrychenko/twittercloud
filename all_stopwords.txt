@@ -116,6 +116,7 @@ own
 all
 through
 r
+re
 can
 she's
 they're
@@ -190,6 +191,14 @@ com
 doing
 aren't
 why
+et
+ll
+s
+e
+d
+ve
+m
+t
 и
 в
 во
