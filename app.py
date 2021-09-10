@@ -1,46 +1,28 @@
 import streamlit as st
-import matplotlib.pyplot as plt 
-import tweepy, re
-from wordcloud import WordCloud
+from helper import make_stopwords, authenticate, get_user_tweeets, make_wordcloud
 
 st.title(" ☁ Head in the Tweets ☁️ ") 
 st.subheader("Create a wordcloud out of your last 200 tweets!")
 st.text_input("Enter a twitter username to begin", key="name")
-screen_name = st.session_state.name
 
-if screen_name != "":
-    if 'all_stopwords' not in st.session_state:
-        text_file = open("all_stopwords.txt", "r")
-        stopwords_list = text_file.read().split("\n")
-        st.session_state.all_stopwords = set(stopwords_list)
-        text_file.close()
-    
-    auth = tweepy.OAuthHandler(st.secrets["consumer_key"], st.secrets["consumer_secret"])
-    auth.set_access_token(st.secrets["access_token_key"], st.secrets["access_token_secret"])
+if "last_name" not in st.session_state:
+    st.session_state.last_name = ""
 
-    api = tweepy.API(auth)
+if st.session_state.last_name != st.session_state.name:    
 
-    alltweets = []  
+    if "all_stopwords" not in st.session_state:
+        st.session_state.all_stopwords = make_stopwords()
+    if "api" not in st.session_state:    
+        st.session_state.api = authenticate()
+
     try:
-        new_tweets = api.user_timeline(screen_name = screen_name,count=200)
-        alltweets.extend(new_tweets)
-        outtweets = [tweet.text for tweet in alltweets]
+       outtweets = get_user_tweeets(st.session_state.name,st.session_state.api)
         try: 
             cat = outtweets[9]   
             st.spinner()
             with st.spinner(text='We\'re building the wordcloud. Give it a sec...'):
-                text = " ".join(outtweets)
-                text = re.sub(pattern=r"http\S+",repl="",string=text.lower())
-                text = re.sub(pattern=r"@\S+",repl="",string=text)
-
-                wordcloud = WordCloud(width=1800, height=1200,stopwords=st.session_state.all_stopwords,
-                                    max_font_size=250, max_words=100, background_color="white",
-                                    colormap='cool', collocations=True).generate(text)  
-
-                fig = plt.figure(figsize=(18,12))
-                plt.imshow(wordcloud, interpolation="bilinear")
-                plt.axis("off")
-                st.pyplot(fig)
+                figure = make_wordcloud(st.session_state.all_stopwords, outtweets)
+                st.pyplot(figure)
                 st.balloons()
         except:
             st.markdown("This account has less than 10 tweets. Tweet more and come back later or try again.")  
