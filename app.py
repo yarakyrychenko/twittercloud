@@ -1,7 +1,7 @@
 import streamlit as st
 from helper import make_stopwords, authenticate, get_user_tweeets, make_wordcloud
 
-st.title(" ☁ Head in the Tweets ☁️ ") 
+st.title(" ☁️ Head in the Tweets ☁️ ") 
 st.subheader("Create a wordcloud out of your last 200 tweets!")
 st.text_input("Enter a twitter username to begin", key="name")
 
