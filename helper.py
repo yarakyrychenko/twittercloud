@@ -1,4 +1,3 @@
-import streamlit as st
 import matplotlib.pyplot as plt 
 import tweepy, re
 from wordcloud import WordCloud
