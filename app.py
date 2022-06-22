@@ -1,5 +1,6 @@
 import streamlit as st
 from helper import make_stopwords, authenticate, get_user_tweeets, make_wordcloud
+import streamlit.components.v1 as components
 
 st.title(" ☁️ Head in the Tweets ☁️ ") 
 st.subheader("Create a wordcloud out of your last 200 tweets!")
@@ -40,6 +41,23 @@ if __name__ == "__main__":
                     figure = make_wordcloud(st.session_state.all_stopwords, outtweets)
                     st.pyplot(figure)
                     st.balloons()
+                    plt.savefig('twittercloud.png')
+                    components.html(
+                    """
+                    <meta name="twitter:card" content="summary_large_image">
+                    <meta name="twitter:site" content="@YaraKyrychenko">
+                    <meta name="twitter:title" content="Top 10 Things Ever">
+                    <meta name="twitter:description" content="Up than 200 characters.">
+                    <meta name="twitter:creator" content="@YaraKyrychenko">
+                    <meta name="twitter:image" content="wittercloud.png">
+                    <meta name="twitter:domain" content="YourDomain.com">
+                    
+                    <a class="twitter-share-button"
+                    href="https://twitter.com/intent/tweet?text=My%20twittercloud"
+                    data-size="large">
+                    Tweet</a>
+                    """
+                    )
                 
             except:
                 st.markdown("This account has fewer than 10 tweets. Tweet more and come back later or try again.")  
