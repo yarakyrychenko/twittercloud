@@ -1,5 +1,6 @@
 import streamlit as st
 from helper import make_stopwords, authenticate, get_user_tweeets, make_wordcloud
+import matplotlib.pyplot as plt
 import streamlit.components.v1 as components
 
 st.title(" ☁️ Head in the Tweets ☁️ ") 
