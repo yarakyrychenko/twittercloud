@@ -41,15 +41,15 @@ if __name__ == "__main__":
                     figure = make_wordcloud(st.session_state.all_stopwords, outtweets)
                     st.pyplot(figure)
                     st.balloons()
-                    plt.savefig('twittercloud.png')
-                    components.html(
+                plt.savefig('https://github.com/yarakyrychenko/twittercloud/edit/main/twittercloud.png')
+                components.html(
                     """
                     <meta name="twitter:card" content="summary_large_image">
                     <meta name="twitter:site" content="@YaraKyrychenko">
                     <meta name="twitter:title" content="Top 10 Things Ever">
                     <meta name="twitter:description" content="Up than 200 characters.">
                     <meta name="twitter:creator" content="@YaraKyrychenko">
-                    <meta name="twitter:image" content="wittercloud.png">
+                    <meta name="twitter:image" content="https://github.com/yarakyrychenko/twittercloud/edit/main/twittercloud.png">
                     <meta name="twitter:domain" content="YourDomain.com">
                     
                     <a class="twitter-share-button"
